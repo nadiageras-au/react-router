@@ -5,11 +5,14 @@ import {Navigate, NavLink, Route, Routes} from "react-router-dom";
 import {PageOne} from "./pages/PageOne";
 import {PageTwo} from "./pages/PageTwo";
 import {PageThree} from "./pages/PageThree";
+import {Page} from "./pages/Page";
+import {dataState} from "../dataState/dataState";
 
-const PATH = {
-    PAGE1: '/page1',
-    PAGE2: '/page2',
-    PAGE3: '/page3',
+export const PATH = {
+    PAGE: '/page',
+    PAGE1: '/page/0',
+    PAGE2: '/page/1',
+    PAGE3: '/page/2',
     ERROR404: '/error404',
 }
 
@@ -38,10 +41,11 @@ export const Site = () => {
                 </nav>
                 <div className={styles.content}>
                     <Routes>
-                        <Route path="/" element={<Navigate to={"/page1"}/>}/>
-                        <Route path={PATH.PAGE1} element={<PageOne/>}/>
-                        <Route path={PATH.PAGE2} element={<PageTwo/>}/>
-                        <Route path={PATH.PAGE3} element={<PageThree/>}/>
+                        <Route path="/" element={<Navigate to={"/page"}/>}/>
+                        <Route path="/page/:id" element={<Page pages={dataState.pages}/>}/>
+                        {/*<Route path={PATH.PAGE} element={<PageOne/>}/>*/}
+                        {/*<Route path={PATH.PAGE} element={<PageTwo/>}/>*/}
+                        {/*<Route path={PATH.PAGE} element={<PageThree/>}/>*/}
                         <Route path="/*" element={PATH.ERROR404}/>
                     </Routes>
 
